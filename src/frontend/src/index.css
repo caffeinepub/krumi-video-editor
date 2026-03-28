@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Satoshi";
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/assets/fonts/Satoshi.woff2") format("woff2");
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    /* Light mode */
+    --background: 0.97 0.005 240;
+    --foreground: 0.15 0.02 250;
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.02 250;
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.02 250;
+    --primary: 0.62 0.2 195;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.93 0.01 240;
+    --secondary-foreground: 0.2 0.02 250;
+    --muted: 0.93 0.01 240;
+    --muted-foreground: 0.5 0.01 240;
+    --accent: 0.62 0.2 195;
+    --accent-foreground: 1 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 1 0 0;
+    --border: 0.88 0.01 240;
+    --input: 0.88 0.01 240;
+    --ring: 0.62 0.2 195;
+    --chart-1: 0.62 0.2 195;
+    --chart-2: 0.65 0.18 155;
+    --chart-3: 0.55 0.22 270;
+    --chart-4: 0.7 0.2 50;
+    --chart-5: 0.6 0.22 320;
+    --sidebar: 0.94 0.008 240;
+    --sidebar-foreground: 0.15 0.02 250;
+    --sidebar-primary: 0.62 0.2 195;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.88 0.015 240;
+    --sidebar-accent-foreground: 0.2 0.02 250;
+    --sidebar-border: 0.88 0.01 240;
+    --sidebar-ring: 0.62 0.2 195;
+    --krumi-panel: 0.96 0.006 240;
+    --krumi-timeline: 0.92 0.008 240;
+  }
+
+  .dark {
+    --background: 0.11 0.018 265;
+    --foreground: 0.93 0.008 240;
+    --card: 0.16 0.02 265;
+    --card-foreground: 0.93 0.008 240;
+    --popover: 0.18 0.022 265;
+    --popover-foreground: 0.93 0.008 240;
+    --primary: 0.72 0.18 195;
+    --primary-foreground: 0.1 0.02 265;
+    --secondary: 0.2 0.025 265;
+    --secondary-foreground: 0.93 0.008 240;
+    --muted: 0.2 0.025 265;
+    --muted-foreground: 0.58 0.01 240;
+    --accent: 0.72 0.18 195;
+    --accent-foreground: 0.1 0.02 265;
+    --destructive: 0.65 0.22 27;
+    --destructive-foreground: 1 0 0;
+    --border: 0.25 0.025 265;
+    --input: 0.22 0.025 265;
+    --ring: 0.72 0.18 195;
+    --chart-1: 0.72 0.18 195;
+    --chart-2: 0.65 0.18 155;
+    --chart-3: 0.6 0.22 270;
+    --chart-4: 0.75 0.2 50;
+    --chart-5: 0.65 0.22 320;
+    --sidebar: 0.14 0.02 265;
+    --sidebar-foreground: 0.93 0.008 240;
+    --sidebar-primary: 0.72 0.18 195;
+    --sidebar-primary-foreground: 0.1 0.02 265;
+    --sidebar-accent: 0.2 0.025 265;
+    --sidebar-accent-foreground: 0.93 0.008 240;
+    --sidebar-border: 0.25 0.025 265;
+    --sidebar-ring: 0.72 0.18 195;
+    --krumi-panel: 0.14 0.02 265;
+    --krumi-timeline: 0.13 0.018 265;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: "Satoshi", "General Sans", system-ui, sans-serif;
+  }
+}
+
+/* Krumi custom utilities */
+.krumi-panel-bg {
+  background-color: oklch(var(--krumi-panel));
+}
+.krumi-timeline-bg {
+  background-color: oklch(var(--krumi-timeline));
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Thin scrollbar for timeline */
+.timeline-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+.timeline-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.timeline-scroll::-webkit-scrollbar-thumb {
+  background-color: oklch(var(--muted));
+  border-radius: 2px;
+}
+
+/* Clip transition animations */
+@keyframes clip-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes clip-slide-left-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes clip-slide-right-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes clip-zoom-in-anim {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes clip-zoom-out-anim {
+  from {
+    transform: scale(1.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.clip-transition-fade {
+  animation: clip-fade-in 0.5s ease forwards;
+}
+
+.clip-transition-slide-left {
+  animation: clip-slide-left-in 0.5s ease forwards;
+}
+
+.clip-transition-slide-right {
+  animation: clip-slide-right-in 0.5s ease forwards;
+}
+
+.clip-transition-zoom-in {
+  animation: clip-zoom-in-anim 0.5s ease forwards;
+}
+
+.clip-transition-zoom-out {
+  animation: clip-zoom-out-anim 0.5s ease forwards;
+}
